@@ -14,6 +14,7 @@ const words = [
 
 let currentWordIndex = 0;
 let selectedSyllables = [];
+let solvedWords = [];
 
 // Initialisierung
 document.addEventListener('DOMContentLoaded', function() {
@@ -44,6 +45,9 @@ function loadWord() {
         
         div.addEventListener('dragstart', dragStart);
         div.addEventListener('dragend', dragEnd);
+        div.addEventListener('click', function() {
+            addSyllableByClick(syllable);
+        });
         
         container.appendChild(div);
     });
@@ -110,6 +114,12 @@ function drop(e) {
     this.classList.remove('drag-over');
 }
 
+// Silbe durch Klick hinzufügen
+function addSyllableByClick(syllable) {
+    selectedSyllables.push(syllable);
+    renderSelectedSyllables();
+}
+
 // Ausgewählte Silben rendern
 function renderSelectedSyllables() {
     const container = document.getElementById('selectedSyllables');
@@ -140,6 +150,10 @@ function checkAnswer() {
         feedback.classList.remove('incorrect');
         feedback.classList.add('correct', 'show');
         feedback.textContent = '🎉 Richtig! "' + currentWord.word + '" ist korrekt!';
+        
+        // Wort zu gelösten Wörtern hinzufügen
+        solvedWords.push(currentWord.word);
+        updateSolvedWordsList();
         
         document.getElementById('checkBtn').style.display = 'none';
         document.getElementById('resetBtn').style.display = 'none';
@@ -188,6 +202,19 @@ function nextWord() {
     }
 }
 
+// Gelöste Wörter anzeigen
+function updateSolvedWordsList() {
+    const container = document.getElementById('solvedWordsList');
+    container.innerHTML = '';
+    
+    solvedWords.forEach(word => {
+        const div = document.createElement('div');
+        div.className = 'solved-word-item';
+        div.textContent = word;
+        container.appendChild(div);
+    });
+}
+
 // Alle Aufgaben abgeschlossen
 function showCompletion() {
     const feedback = document.getElementById('feedback');
@@ -201,6 +228,8 @@ function showCompletion() {
     
     document.getElementById('nextBtn').onclick = function() {
         currentWordIndex = 0;
+        solvedWords = [];
+        updateSolvedWordsList();
         loadWord();
         document.getElementById('nextBtn').textContent = 'Nächste Aufgabe →';
         document.getElementById('nextBtn').onclick = nextWord;
