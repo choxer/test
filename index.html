@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silben-Puzzle - Grundschule</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 Silben-Puzzle</h1>
+            <p class="subtitle">Setze die Silben zusammen und bilde neue Wörter!</p>
+        </header>
+
+        <div class="game-area">
+            <div class="task-section">
+                <h2 id="taskTitle">Aufgabe</h2>
+                <p class="hint">Verbinde die Silben in der richtigen Reihenfolge:</p>
+            </div>
+
+            <div class="syllables-container">
+                <div id="availableSyllables" class="syllables-grid"></div>
+            </div>
+
+            <div class="answer-area">
+                <h3>Dein Wort:</h3>
+                <div id="answerDropZone" class="drop-zone">
+                    <p>Ziehe die Silben hier hin</p>
+                </div>
+                <div id="selectedSyllables" class="selected-syllables"></div>
+            </div>
+
+            <div class="controls">
+                <button id="checkBtn" class="btn btn-primary">✓ Überprüfen</button>
+                <button id="resetBtn" class="btn btn-secondary">↻ Zurücksetzen</button>
+                <button id="nextBtn" class="btn btn-success" style="display: none;">Nächste Aufgabe →</button>
+            </div>
+
+            <div id="feedback" class="feedback"></div>
+        </div>
+
+        <div class="progress">
+            <p>Aufgabe <span id="currentTask">1</span> von <span id="totalTasks">10</span></p>
+            <div class="progress-bar">
+                <div id="progressFill" class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
