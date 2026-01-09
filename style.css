@@ -5,86 +5,98 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     font-family: 'Arial', sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
+    overflow: hidden; /* Verhindert Seiten-Scroll */
 }
 
 .container {
     background: white;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-    max-width: 800px;
+    border-radius: 14px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    max-width: 900px;
     width: 100%;
-    padding: 40px;
+    height: calc(100vh - 20px); /* komplette Höhe minus Padding */
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden; /* Seite nicht scrollbar machen */
 }
 
 /* Header */
 header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 12px;
+    flex: 0 0 auto;
 }
 
 header h1 {
-    font-size: 3em;
+    font-size: 1.8rem;
     color: #667eea;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
 }
 
 .subtitle {
-    font-size: 1.1em;
+    font-size: 0.95rem;
     color: #666;
 }
 
 /* Task Section */
 .task-section {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 8px;
 }
 
 .task-section h2 {
     color: #333;
-    font-size: 1.5em;
-    margin-bottom: 10px;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
 }
 
 .hint {
     color: #888;
-    font-size: 0.95em;
+    font-size: 0.85rem;
 }
 
 /* Syllables Container */
 .syllables-container {
-    margin-bottom: 40px;
+    margin-bottom: 10px;
 }
 
 .syllables-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 8px;
     justify-content: center;
     background: #f8f9ff;
-    padding: 20px;
-    border-radius: 15px;
-    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    max-height: 26vh; /* begrenzt Höhe, passt in Ansicht */
+    overflow-y: auto; /* internes Scrollen falls nötig */
 }
 
 .syllable {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 15px 25px;
-    border-radius: 10px;
+    padding: 10px 16px;
+    border-radius: 8px;
     cursor: move;
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1rem;
     user-select: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    transition: all 0.2s ease;
+    box-shadow: 0 3px 12px rgba(102, 126, 234, 0.35);
 }
 
 .syllable:hover {
@@ -100,10 +112,11 @@ header h1 {
 /* Answer Area */
 .answer-area {
     background: #fff9e6;
-    padding: 25px;
-    border-radius: 15px;
-    margin-bottom: 30px;
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 10px;
     border: 3px dashed #ffd700;
+    flex: 0 0 auto;
 }
 
 .answer-area h3 {
@@ -115,17 +128,17 @@ header h1 {
 .drop-zone {
     background: white;
     border: 3px solid #667eea;
-    border-radius: 10px;
-    padding: 30px;
+    border-radius: 8px;
+    padding: 10px;
     text-align: center;
     color: #999;
-    font-size: 1em;
-    min-height: 60px;
+    font-size: 0.95rem;
+    min-height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
-    margin-bottom: 15px;
+    transition: all 0.2s ease;
+    margin-bottom: 8px;
 }
 
 .drop-zone.drag-over {
@@ -137,21 +150,23 @@ header h1 {
 .selected-syllables {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
+    max-height: 16vh;
+    overflow-y: auto;
 }
 
 .selected-syllable {
     background: #667eea;
     color: white;
-    padding: 12px 18px;
+    padding: 8px 12px;
     border-radius: 8px;
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 0.98rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .selected-syllable:hover {
@@ -169,22 +184,22 @@ header h1 {
 /* Controls */
 .controls {
     display: flex;
-    gap: 15px;
+    gap: 10px;
     justify-content: center;
-    margin-bottom: 30px;
+    margin-bottom: 8px;
     flex-wrap: wrap;
 }
 
 .btn {
-    padding: 12px 30px;
-    font-size: 1em;
+    padding: 8px 18px;
+    font-size: 0.95rem;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
-    transition: all 0.3s ease;
-    flex: 1;
-    min-width: 150px;
+    transition: all 0.2s ease;
+    flex: 0 1 auto;
+    min-width: 110px;
 }
 
 .btn-primary {
@@ -223,13 +238,13 @@ header h1 {
 /* Feedback */
 .feedback {
     text-align: center;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 6px;
+    border-radius: 8px;
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 0.98rem;
     display: none;
-    animation: slideIn 0.3s ease;
+    animation: slideIn 0.2s ease;
 }
 
 .feedback.show {
@@ -266,13 +281,14 @@ header h1 {
 
 .progress p {
     color: #666;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
     font-weight: bold;
+    font-size: 0.9rem;
 }
 
 .progress-bar {
     background: #e0e0e0;
-    height: 10px;
+    height: 8px;
     border-radius: 5px;
     overflow: hidden;
 }
@@ -281,39 +297,43 @@ header h1 {
     background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
     height: 100%;
     width: 0%;
-    transition: width 0.3s ease;
+    transition: width 0.2s ease;
 }
 
 /* Responsive Design */
-@media (max-width: 600px) {
+@media (max-width: 900px) {
     .container {
-        padding: 20px;
+        padding: 12px;
     }
 
     header h1 {
-        font-size: 2em;
+        font-size: 1.4rem;
     }
 
     .syllables-grid {
-        gap: 8px;
+        gap: 6px;
+        padding: 8px;
     }
 
     .syllable {
-        padding: 12px 20px;
-        font-size: 1em;
+        padding: 8px 12px;
+        font-size: 0.95rem;
     }
 
     .btn {
-        min-width: 120px;
-        padding: 10px 20px;
+        min-width: 90px;
+        padding: 8px 12px;
     }
 
     .controls {
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
     }
+}
 
-    .btn {
-        flex: none;
-        width: 100%;
-    }
+@media (max-height: 650px) {
+    .syllables-grid { max-height: 20vh; }
+    .selected-syllables { max-height: 12vh; }
+    header h1 { font-size: 1.2rem; }
 }
